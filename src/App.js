@@ -12,8 +12,8 @@ class App extends Component {
     super(props)
     this.state = {
       word: '',
-      similarWords: [],
-      nonSimilarWords: [],
+      similarWords: null,
+      nonSimilarWords: null,
       samples: ['മലയാളം', 'ഭാഷാ', 'ജനുവരി', 'സ്ത്രീ', 'രാജാവ്', 'നമ്മുടെ', 'മാങ്ങ'],
       operations: [
         { word: 'സ്ത്രീ', sign: '+' },
@@ -109,10 +109,11 @@ class App extends Component {
   render() {
     const { word, similarWords, nonSimilarWords, samples, operations, loading, result } = this.state
     return (
-      <div className="App"> <div className="top header">
+      <div className="App">
+        {' '}
+        <div className="top header">
           <h1>W2V മലയാളം</h1>
         </div>
-
         <div className="block-wrapper">
           <div className="block similarity">
             <h5>Similarity search</h5>
@@ -136,22 +137,25 @@ class App extends Component {
               ))}
             </div>
             <div className="word-sets">
-              <WordSet
-                title={'SIMILAR'}
-                color="positive"
-                words={similarWords}
-                onSelect={this.findSimilar}
-              />
-              <WordSet
-                title={'NOT SIMILAR'}
-                color="negative"
-                words={nonSimilarWords}
-                onSelect={this.findSimilar}
-              />
+              {similarWords && (
+                <WordSet
+                  title={'SIMILAR'}
+                  color="positive"
+                  words={similarWords}
+                  onSelect={this.findSimilar}
+                />
+              )}
+              {nonSimilarWords && (
+                <WordSet
+                  title={'NOT SIMILAR'}
+                  color="negative"
+                  words={nonSimilarWords}
+                  onSelect={this.findSimilar}
+                />
+              )}
             </div>
           </div>
         </div>
-
         <div className="block-wrapper">
           <div className="block algebra">
             <h5>Word2Vec algebra</h5>
