@@ -3,7 +3,6 @@ import React from 'react'
 import './Operator.css'
 
 const Operator = ({ word, sign, switchSign, remove, onChange }) => {
-  console.log('sign:', sign)
   let plus = ''
   let minus = ''
   if (sign === '+') plus = 'active'
@@ -17,7 +16,7 @@ const Operator = ({ word, sign, switchSign, remove, onChange }) => {
       </span>
       <input className="op" type="text" value={word} onChange={e => onChange(e.target.value)} />
       <span className="remove" onClick={remove}>
-        rm
+        remove
       </span>
     </div>
   )
