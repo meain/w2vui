@@ -9,7 +9,7 @@ const WordSet = ({ title, color, words, onSelect }) => {
       <div className="contents">
         {words.map(w => (
           <span key={w} className={`word ${color}`} onClick={() => onSelect(w)}>
-            <div className="circle"/> {w}
+            {w}
           </span>
         ))}
       </div>

@@ -4,7 +4,6 @@
   padding: 10px 20px;
   min-height: 100px;
   overflow: auto;
-  border: 1px solid #ddd;
 }
 
 @media only screen and (max-width: 600px) {
@@ -13,13 +12,13 @@
   }
 }
 
-/* .WordSet.positive { */
-/*   background: rgba(85, 239, 196, 0.3); */
-/* } */
-/*  */
-/* .WordSet.negative { */
-/*   background: rgba(225, 112, 85, 0.3); */
-/* } */
+.WordSet.positive {
+  background: rgba(85, 239, 196, 0.3);
+}
+
+.WordSet.negative {
+  background: rgba(225, 112, 85, 0.3);
+}
 
 .WordSet .container h4 {
   margin: 0;
@@ -30,6 +29,7 @@
   display: flex;
   padding: 0 20px;
   margin: 20px 10px 10px 5px;
+  text-align: right;
   color: #5a5a5a;
 }
 
@@ -48,9 +48,6 @@
   border: 1px solid #ccc;
   cursor: pointer;
   background-color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .word:hover {
@@ -63,18 +60,4 @@
 
 .word.negative:hover {
   background: rgba(225, 112, 85, 0.3);
-}
-
-.circle {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  margin-right: 10px;
-  background: rgba(85, 239, 196, 1);
-}
-.word.negative > .circle {
-  background: rgba(225, 112, 85, 1);
-}
-.word.positive > .cricle {
-  background: rgba(85, 239, 196, 1);
 }
