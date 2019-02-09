@@ -11,6 +11,11 @@ class App extends Component {
   constructor(props: Props) {
     super(props)
     this.state = {
+      languageStrings: {
+        ml: 'മലയാളം',
+        ta: 'தமிழ் ',
+      },
+      language: 'ml',
       word: '',
       similarWords: [],
       nonSimilarWords: [],
@@ -29,10 +34,11 @@ class App extends Component {
     self.addOperator = self.addOperator.bind(this)
     self.findSimilar = self.findSimilar.bind(this)
     self.sendOperation = self.sendOperation.bind(this)
+    self.setLanguage = self.setLanguage.bind(this)
   }
 
   sendOperation() {
-    let { operations } = this.state
+    let { operations, language } = this.state
     let positive = []
     let negative = []
     operations.forEach(o => {
@@ -42,7 +48,7 @@ class App extends Component {
       }
     })
     axios
-      .post('http://a6db7fa5.ngrok.io/compare/', { positive, negative })
+      .post(`http://104.198.237.11:8400/compare/`, { positive, negative })
       .then(res => {
         let result = []
         res.data.forEach(r => {
@@ -56,9 +62,10 @@ class App extends Component {
   }
 
   findSimilar(word) {
+    const { language } = this.state
     this.setState({ ...this.state, word, loading: true })
     axios
-      .post('http://a6db7fa5.ngrok.io/similar/', { word })
+      .post(`http://104.198.237.11:8400/similar/${language}/`, { word })
       .then(res => {
         let similarWords = []
         let nonSimilarWords = []
@@ -106,13 +113,39 @@ class App extends Component {
     this.setState({ ...this.state, operations })
   }
 
-  render() {
-    const { word, similarWords, nonSimilarWords, samples, operations, loading, result } = this.state
-    return (
-      <div className="App"> <div className="top header">
-          <h1>W2V മലയാളം</h1>
-        </div>
+  setLanguage(language) {
+    this.setState({ ...this.state, language })
+  }
 
+  render() {
+    const {
+      word,
+      similarWords,
+      nonSimilarWords,
+      samples,
+      operations,
+      loading,
+      result,
+      language,
+      languageStrings,
+    } = this.state
+    return (
+      <div className="App">
+        <div className="top header">
+          <h1>W2V {languageStrings[language]}</h1>
+          <div className="language-switcher">
+            <div
+              className={`language ${language === 'ml' ? 'active' : ''}`}
+              onClick={() => this.setLanguage('ml')}>
+              {languageStrings.ml}
+            </div>
+            <div
+              className={`language ${language === 'ta' ? 'active' : ''}`}
+              onClick={() => this.setLanguage('ta')}>
+              {languageStrings.ta}
+            </div>
+          </div>
+        </div>
         <div className="block-wrapper">
           <div className="block similarity">
             <h5>Similarity search</h5>
@@ -152,39 +185,41 @@ class App extends Component {
           </div>
         </div>
 
-        <div className="block-wrapper">
-          <div className="block algebra">
-            <h5>Word2Vec algebra</h5>
-            <div className="operations">
-              {operations.map((o, i) => (
-                <Operator
-                  key={i}
-                  word={o.word}
-                  sign={o.sign}
-                  onChange={word => this.wordChagne(i, word)}
-                  switchSign={() => this.switchSign(i)}
-                  remove={() => this.remove(i)}
+        {language === 'ml' && (
+          <div className="block-wrapper">
+            <div className="block algebra">
+              <h5>Word2Vec algebra</h5>
+              <div className="operations">
+                {operations.map((o, i) => (
+                  <Operator
+                    key={i}
+                    word={o.word}
+                    sign={o.sign}
+                    onChange={word => this.wordChagne(i, word)}
+                    switchSign={() => this.switchSign(i)}
+                    remove={() => this.remove(i)}
+                  />
+                ))}
+              </div>
+              {result && (
+                <WordSet
+                  title={'RESULT'}
+                  color="positive"
+                  words={result}
+                  onSelect={this.findSimilar}
                 />
-              ))}
-            </div>
-            {result && (
-              <WordSet
-                title={'RESULT'}
-                color="positive"
-                words={result}
-                onSelect={this.findSimilar}
-              />
-            )}
-            <div className="abuttons">
-              <button className="abutton add-new" onClick={this.addOperator}>
-                + Add operation
-              </button>
-              <button className="abutton" onClick={this.sendOperation}>
-                Send >
-              </button>
+              )}
+              <div className="abuttons">
+                <button className="abutton add-new" onClick={this.addOperator}>
+                  + Add operation
+                </button>
+                <button className="abutton" onClick={this.sendOperation}>
+                  Send >
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     )
   }
