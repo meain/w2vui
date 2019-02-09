@@ -27,7 +27,7 @@
 }
 .op {
   margin: 0 10px;
-  font-family: "Operator Mono";
+  font-family: 'Inconsolata', monospace;
   height: 100%;
   font-size: 1rem;
   border: none;

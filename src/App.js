@@ -6,6 +6,7 @@ import Operator from './components/Operator'
 import WordSet from './components/WordSet'
 
 import axios from 'axios'
+import { languages, samples, operationsSamples } from './constants.js'
 
 class App extends Component {
   constructor(props: Props) {
@@ -14,12 +15,8 @@ class App extends Component {
       word: '',
       similarWords: null,
       nonSimilarWords: null,
-      samples: ['മലയാളം', 'ഭാഷാ', 'ജനുവരി', 'സ്ത്രീ', 'രാജാവ്', 'നമ്മുടെ', 'മാങ്ങ'],
-      operations: [
-        { word: 'സ്ത്രീ', sign: '+' },
-        { word: 'രാജാവ്', sign: '+' },
-        { word: 'പുരുഷൻ', sign: '-' },
-      ],
+      samples: samples.malayalam,
+      operations: operationsSamples.malayalam,
       result: null,
     }
 
@@ -110,13 +107,12 @@ class App extends Component {
     const { word, similarWords, nonSimilarWords, samples, operations, loading, result } = this.state
     return (
       <div className="App">
-        {' '}
         <div className="top header">
-          <h1>W2V മലയാളം</h1>
+          <h1>{languages[0].label} W2V</h1>
         </div>
         <div className="block-wrapper">
           <div className="block similarity">
-            <h5>Similarity search</h5>
+            <h2>Similarity search</h2>
             <form className="input-wrapper" onSubmit={this.onSubmit}>
               <input
                 id="input"
@@ -158,7 +154,7 @@ class App extends Component {
         </div>
         <div className="block-wrapper">
           <div className="block algebra">
-            <h5>Word2Vec algebra</h5>
+            <h2>Word2Vec algebra</h2>
             <div className="operations">
               {operations.map((o, i) => (
                 <Operator

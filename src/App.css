@@ -1,7 +1,7 @@
 .App {
   width: 100vw;
   height: 100vh;
-  font-family: 'Operator Mono', monospace;
+  font-family: 'Inconsolata', monospace;
 }
 
 .header {
@@ -32,7 +32,7 @@
   border: none;
   flex: 1;
   padding: 20px;
-  font-family: 'Operator Mono';
+  font-family: 'Inconsolata', monospace;
   background-color: #f5f5f5;
 }
 .samples {
@@ -70,7 +70,7 @@
   background-color: white;
   outline: 0;
   border: 1px solid black;
-  font-family: 'Operator Mono';
+  font-family: 'Inconsolata', monospace;
   cursor: pointer;
 }
 
@@ -97,7 +97,7 @@
   }
 }
 
-h5,
+h2,
 .result {
   text-align: center;
 }
@@ -126,6 +126,3 @@ hr {
   margin: 70px 0;
 }
 
-.block>h5 {
-  text-decoration: underline;
-}
