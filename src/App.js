@@ -4,6 +4,8 @@ import React, { Component } from 'react'
 
 import Operator from './components/Operator'
 import WordSet from './components/WordSet'
+import Header from './components/Header'
+import Similarity from './components/Similarity'
 
 import axios from 'axios'
 import { languages, samples, operationsSamples } from './constants.js'
@@ -103,55 +105,59 @@ class App extends Component {
     this.setState({ ...this.state, operations })
   }
 
+  onRouteChange(route) {
+    console.log('route:', route)
+  }
+
   render() {
     const { word, similarWords, nonSimilarWords, samples, operations, loading, result } = this.state
+    const routes = [{title: 'SIMILARITY'}, {title: 'ALGEBRA'}]
     return (
       <div className="App">
-        <div className="top header">
-          <h1>{languages[0].label} W2V</h1>
-        </div>
-        <div className="block-wrapper">
-          <div className="block similarity">
-            <h2>Similarity search</h2>
-            <form className="input-wrapper" onSubmit={this.onSubmit}>
-              <input
-                id="input"
-                type="text"
-                placeholder="Enter word..."
-                value={word}
-                onChange={e => {
-                  this.setState({ ...this.state, word: e.target.value })
-                }}
-              />
-              <div className="loader" style={{ display: loading ? 'block' : 'none' }} />
-            </form>
-            <div className="samples">
-              {samples.map(s => (
-                <span className="word" key={s} onClick={() => this.findSimilar(s)}>
-                  {s}
-                </span>
-              ))}
-            </div>
-            <div className="word-sets">
-              {similarWords && (
-                <WordSet
-                  title={'SIMILAR'}
-                  color="positive"
-                  words={similarWords}
-                  onSelect={this.findSimilar}
-                />
-              )}
-              {nonSimilarWords && (
-                <WordSet
-                  title={'NOT SIMILAR'}
-                  color="negative"
-                  words={nonSimilarWords}
-                  onSelect={this.findSimilar}
-                />
-              )}
-            </div>
-          </div>
-        </div>
+        <Header routes={routes} current={0} onChange={this.onRouteChange} />
+        <Similarity samples={samples}/>
+        {/* <div className="block-wrapper"> */}
+        {/*   <div className="block similarity"> */}
+        {/*     <h2>Similarity search</h2> */}
+        {/*     <form className="input-wrapper" onSubmit={this.onSubmit}> */}
+        {/*       <input */}
+        {/*         id="input" */}
+        {/*         type="text" */}
+        {/*         placeholder="Enter word..." */}
+        {/*         value={word} */}
+        {/*         onChange={e => { */}
+        {/*           this.setState({ ...this.state, word: e.target.value }) */}
+        {/*         }} */}
+        {/*       /> */}
+        {/*       <div className="loader" style={{ display: loading ? 'block' : 'none' }} /> */}
+        {/*     </form> */}
+        {/*     <div className="samples"> */}
+        {/*       {samples.map(s => ( */}
+        {/*         <span className="word" key={s} onClick={() => this.findSimilar(s)}> */}
+        {/*           {s} */}
+        {/*         </span> */}
+        {/*       ))} */}
+        {/*     </div> */}
+        {/*     <div className="word-sets"> */}
+        {/*       {similarWords && ( */}
+        {/*         <WordSet */}
+        {/*           title={'SIMILAR'} */}
+        {/*           color="positive" */}
+        {/*           words={similarWords} */}
+        {/*           onSelect={this.findSimilar} */}
+        {/*         /> */}
+        {/*       )} */}
+        {/*       {nonSimilarWords && ( */}
+        {/*         <WordSet */}
+        {/*           title={'NOT SIMILAR'} */}
+        {/*           color="negative" */}
+        {/*           words={nonSimilarWords} */}
+        {/*           onSelect={this.findSimilar} */}
+        {/*         /> */}
+        {/*       )} */}
+        {/*     </div> */}
+        {/*   </div> */}
+        {/* </div> */}
         <div className="block-wrapper">
           <div className="block algebra">
             <h2>Word2Vec algebra</h2>

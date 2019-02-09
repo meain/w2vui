@@ -1,0 +1,41 @@
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2rem;
+  background-color: black;
+}
+
+.Header-title {
+  padding: 30px;
+  color: white;
+}
+
+.Header-routes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.Header-route {
+  padding: 30px;
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+
+.Header-route.SIMILARITY {
+  background-color: #63ace5;
+}
+
+.Header-route.SIMILARITY:hover {
+  background-color: #70c0ff;
+}
+
+.Header-route.ALGEBRA {
+  background-color: #f6cd61;
+}
+
+.Header-route.ALGEBRA:hover {
+  background-color: #ffd361;
+}

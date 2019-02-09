@@ -8,7 +8,8 @@
     "start": "parcel public/index.html",
     "build": "parcel build public/index.html",
     "flow": "flow",
-    "eslint": "eslint"
+    "eslint": "eslint",
+    "mockserver": "json-server --watch mock.json"
   },
   "keywords": [],
   "author": "",

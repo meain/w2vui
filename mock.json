@@ -1,0 +1,46 @@
+{
+  "similarity": {
+    "similar": [
+      [
+        "hai",
+        0.93
+      ],
+      [
+        "hello",
+        0.9
+      ],
+      [
+        "yellow",
+        0.89
+      ]
+    ],
+    "not_similar": [
+      [
+        "bye",
+        0.66
+      ],
+      [
+        "nope",
+        0.11
+      ],
+      [
+        "woops",
+        0
+      ]
+    ]
+  },
+  "compare": [
+    [
+      "hai",
+      0.93
+    ],
+    [
+      "hello",
+      0.9
+    ],
+    [
+      "yellow",
+      0.89
+    ]
+  ]
+}

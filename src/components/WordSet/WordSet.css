@@ -12,52 +12,21 @@
   }
 }
 
-.WordSet.positive {
-  background: rgba(85, 239, 196, 0.3);
+.WordSet-header {
+text-align: center;
 }
 
-.WordSet.negative {
-  background: rgba(225, 112, 85, 0.3);
-}
-
-.WordSet .container h4 {
-  margin: 0;
-  padding: 10px;
-}
-
-.WordSet .header {
+.WordSet-contents {
   display: flex;
-  padding: 0 20px;
-  margin: 20px 10px 10px 5px;
-  text-align: right;
-  color: #5a5a5a;
+  flex-direction: column;
 }
 
-.WordSet .contents {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 10px;
+
+.WordSet-word {
+  font-size: 1.4rem;
 }
 
-.word {
-  border-radius: 1px;
-  padding: 2px 20px;
-  margin: 3px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  background-color: #fff;
-}
-
-.word:hover {
-  background-color: #f5f5f5;
-}
-
-.word.positive:hover {
-  background: rgba(85, 239, 196, 0.3);
-}
-
-.word.negative:hover {
-  background: rgba(225, 112, 85, 0.3);
+.WordSet-percentage {
+  font-size: 1.8rem;
+  color: #ccc;
 }
