@@ -13,13 +13,31 @@ class App extends Component {
     this.state = {
       languageStrings: {
         ml: 'മലയാളം',
-        ta: 'தமிழ் ',
+        ta: 'தமிழ்',
       },
       language: 'ml',
       word: '',
-      similarWords: [],
-      nonSimilarWords: [],
-      samples: ['മലയാളം', 'ഭാഷാ', 'ജനുവരി', 'സ്ത്രീ', 'രാജാവ്', 'നമ്മുടെ', 'മാങ്ങ'],
+      similarWords: null,
+      nonSimilarWords: null,
+      samples: {
+        ml: ['മലയാളം', 'ഭാഷാ', 'ജനുവരി', 'സ്ത്രീ', 'രാജാവ്', 'നമ്മുടെ', 'മാങ്ങ'],
+        ta: [
+          'தமிழ்',
+          'பாண்டி',
+          'முயல்',
+          'மளிகைக்',
+          'இலங்கை',
+          'பற்கள்',
+          'பொதுச்செயலாளராக',
+          'கட்சி',
+          'ஜெயலலிதா',
+          'ரஜினி',
+          'மாலை',
+          'தோனி',
+          'கன்னட',
+          'சீதாராமன்',
+        ],
+      },
       operations: [
         { word: 'സ്ത്രീ', sign: '+' },
         { word: 'രാജാവ്', sign: '+' },
@@ -114,7 +132,7 @@ class App extends Component {
   }
 
   setLanguage(language) {
-    this.setState({ ...this.state, language })
+    this.setState({ ...this.state, language, similarWords: null, nonSimilarWords: null, word: '' })
   }
 
   render() {
@@ -129,6 +147,7 @@ class App extends Component {
       language,
       languageStrings,
     } = this.state
+    const languageSamples = samples[language]
     return (
       <div className="App">
         <div className="top header">
@@ -146,6 +165,7 @@ class App extends Component {
             </div>
           </div>
         </div>
+
         <div className="block-wrapper">
           <div className="block similarity">
             <h5>Similarity search</h5>
@@ -162,25 +182,29 @@ class App extends Component {
               <div className="loader" style={{ display: loading ? 'block' : 'none' }} />
             </form>
             <div className="samples">
-              {samples.map(s => (
+              {languageSamples.map(s => (
                 <span className="word" key={s} onClick={() => this.findSimilar(s)}>
                   {s}
                 </span>
               ))}
             </div>
             <div className="word-sets">
-              <WordSet
-                title={'SIMILAR'}
-                color="positive"
-                words={similarWords}
-                onSelect={this.findSimilar}
-              />
-              <WordSet
-                title={'NOT SIMILAR'}
-                color="negative"
-                words={nonSimilarWords}
-                onSelect={this.findSimilar}
-              />
+              {similarWords && (
+                <WordSet
+                  title={'SIMILAR'}
+                  color="positive"
+                  words={similarWords}
+                  onSelect={this.findSimilar}
+                />
+              )}{' '}
+              {nonSimilarWords && (
+                <WordSet
+                  title={'NOT SIMILAR'}
+                  color="negative"
+                  words={nonSimilarWords}
+                  onSelect={this.findSimilar}
+                />
+              )}
             </div>
           </div>
         </div>
