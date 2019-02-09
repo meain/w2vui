@@ -168,7 +168,7 @@ class App extends Component {
 
         <div className="block-wrapper">
           <div className="block similarity">
-            <h5>Similarity search</h5>
+            <h2>Similarity search</h2>
             <form className="input-wrapper" onSubmit={this.onSubmit}>
               <input
                 id="input"
@@ -212,7 +212,7 @@ class App extends Component {
         {language === 'ml' && (
           <div className="block-wrapper">
             <div className="block algebra">
-              <h5>Word2Vec algebra</h5>
+              <h2>Word2Vec algebra</h2>
               <div className="operations">
                 {operations.map((o, i) => (
                   <Operator
