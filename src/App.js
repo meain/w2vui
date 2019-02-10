@@ -10,12 +10,17 @@ import axios from 'axios'
 class App extends Component {
   constructor(props: Props) {
     super(props)
+    const url = new URL(window.location)
+    const supportedLanguages = [ 'ta', 'ml' ]
+    let lang = url.searchParams.get('lang')
+    lang = lang && supportedLanguages.includes(lang) ? lang : 'ml'
+
     this.state = {
       languageStrings: {
         ml: 'മലയാളം',
         ta: 'தமிழ்',
       },
-      language: 'ml',
+      language: lang,
       word: '',
       similarWords: null,
       nonSimilarWords: null,
