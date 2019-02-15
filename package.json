@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel public/index.html",
-    "build": "npm run build -- --public-url='/w2vui'",
+    "build": "parcel build public/index.html --public-url='/w2vui'",
     "flow": "flow",
     "eslint": "eslint",
     "predeploy": "npm run build",
