@@ -112,6 +112,15 @@ hr {
   margin: 0 !important;
 }
 
+@media only screen and (max-width: 600px) {
+  .top {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 .block-wrapper {
   width: 100%;
   display: flex;
@@ -148,4 +157,10 @@ hr {
 .language.active {
   color: white;
   background: black;
+}
+
+@media only screen and (max-width: 600px) {
+  h2 {
+    text-align: center;
+  }
 }
