@@ -7,6 +7,8 @@ import WordSet from './components/WordSet'
 
 import axios from 'axios'
 
+import {languageStrings, samples, operationSamples} from './constants.js'
+
 const ip = '35.184.138.74:5555'
 
 class App extends Component {
@@ -18,37 +20,13 @@ class App extends Component {
     lang = lang && supportedLanguages.includes(lang) ? lang : 'ml'
 
     this.state = {
-      languageStrings: {
-        ml: 'മലയാളം',
-        ta: 'தமிழ்',
-      },
+      languageStrings,
       language: lang,
       word: '',
       similarWords: null,
       nonSimilarWords: null,
-      samples: {
-        ml: ['ഭാഷാ', 'ജനുവരി', 'സ്ത്രീ', 'രാജാവ്', 'നമ്മുടെ', 'മാങ്ങ'],
-        ta: [
-          'பாண்டி',
-          'முயல்',
-          'மளிகைக்',
-          'இலங்கை',
-          'பற்கள்',
-          'பொதுச்செயலாளராக',
-          'கட்சி',
-          'ஜெயலலிதா',
-          'ரஜினி',
-          'மாலை',
-          'தோனி',
-          'கன்னட',
-          'சீதாராமன்',
-        ],
-      },
-      operations: [
-        { word: 'സ്ത്രീ', sign: '+' },
-        { word: 'രാജാവ്', sign: '+' },
-        { word: 'പുരുഷൻ', sign: '-' },
-      ],
+      samples,
+      operations: operationSamples.ml,
       result: null,
     }
 
