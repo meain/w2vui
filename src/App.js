@@ -7,6 +7,8 @@ import WordSet from './components/WordSet'
 
 import axios from 'axios'
 
+const ip = '35.184.138.74:5555'
+
 class App extends Component {
   constructor(props: Props) {
     super(props)
@@ -70,7 +72,7 @@ class App extends Component {
       }
     })
     axios
-      .post(`http://104.198.237.11:8400/compare/`, { positive, negative })
+      .post(`http://${ip}/compare/`, { positive, negative })
       .then(res => {
         let result = []
         res.data.forEach(r => {
@@ -87,7 +89,7 @@ class App extends Component {
     const { language } = this.state
     this.setState({ ...this.state, word, loading: true })
     axios
-      .post(`http://104.198.237.11:8400/similar/${language}/`, { word })
+      .post(`http://${ip}/similar/${language}/`, { word })
       .then(res => {
         let similarWords = []
         let nonSimilarWords = []
