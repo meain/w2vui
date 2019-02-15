@@ -8,7 +8,9 @@
     "start": "parcel public/index.html",
     "build": "npm run build -- --public-url='/w2vui'",
     "flow": "flow",
-    "eslint": "eslint"
+    "eslint": "eslint",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
