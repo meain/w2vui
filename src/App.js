@@ -15,7 +15,7 @@ class App extends Component {
   constructor(props: Props) {
     super(props)
     const url = new URL(window.location)
-    const supportedLanguages = [ 'ta', 'ml' ]
+    const supportedLanguages = [ 'ta', 'ml', 'be']
     let lang = url.searchParams.get('lang')
     lang = lang && supportedLanguages.includes(lang) ? lang : 'ml'
 
@@ -147,6 +147,11 @@ class App extends Component {
               onClick={() => this.setLanguage('ta')}>
               {languageStrings.ta}
             </div>
+            <div
+              className={`language ${language === 'be' ? 'active' : ''}`}
+              onClick={() => this.setLanguage('be')}>
+              {languageStrings.be}
+            </div>
           </div>
         </div>
 
@@ -180,7 +185,7 @@ class App extends Component {
                   words={similarWords}
                   onSelect={this.findSimilar}
                 />
-              )}{' '}
+              )}
               {nonSimilarWords && (
                 <WordSet
                   title={'NOT SIMILAR'}
