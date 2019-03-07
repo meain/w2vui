@@ -6,7 +6,7 @@ export const colors = {
 export const languageStrings = {
   ml: 'മലയാളം',
   ta: 'தமிழ்',
-  bl: 'বাঙালি',
+  bl: 'বাংলা',
 }
 
 export const samples = {
@@ -31,4 +31,5 @@ export const samples = {
 
 export const operationSamples = {
   ml: [{ word: 'സ്ത്രീ', sign: '+' }, { word: 'രാജാവ്', sign: '+' }, { word: 'പുരുഷൻ', sign: '-' }],
+  bl: [{ word: 'বাবা', sign: '+' }, { word: 'মেয়ে', sign: '+' }, { word: 'ছেলে', sign: '-' }],
 }

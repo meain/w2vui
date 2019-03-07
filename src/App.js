@@ -7,7 +7,7 @@ import WordSet from './components/WordSet'
 
 import axios from 'axios'
 
-import {languageStrings, samples, operationSamples} from './constants.js'
+import { languageStrings, samples, operationSamples } from './constants.js'
 
 const ip = '35.184.138.74:5555'
 
@@ -15,7 +15,7 @@ class App extends Component {
   constructor(props: Props) {
     super(props)
     const url = new URL(window.location)
-    const supportedLanguages = [ 'ta', 'ml', 'bl']
+    const supportedLanguages = ['ta', 'ml', 'bl']
     let lang = url.searchParams.get('lang')
     lang = lang && supportedLanguages.includes(lang) ? lang : 'ml'
 
@@ -92,31 +92,38 @@ class App extends Component {
   }
 
   switchSign(i) {
-    let { operations } = this.state
-    operations[i].sign = operations[i].sign === '+' ? '-' : '+'
+    let { operations, language } = this.state
+    operations[language][i].sign = operations[i].sign === '+' ? '-' : '+'
     this.setState({ ...this.state, operations })
   }
 
   remove(i) {
-    let { operations } = this.state
-    operations.splice(i, 1)
+    let { operations, language } = this.state
+    operations[language].splice(i, 1)
     this.setState({ ...this.state, operations })
   }
 
   addOperator() {
-    let { operations } = this.state
-    operations.push({ word: '', sign: '+' })
+    let { operations, language } = this.state
+    operations[language].push({ word: '', sign: '+' })
     this.setState({ ...this.state, operations })
   }
 
   wordChagne(i, word) {
-    let { operations } = this.state
-    operations[i].word = word
+    let { operations, language } = this.state
+    operations[language][i].word = word
     this.setState({ ...this.state, operations })
   }
 
   setLanguage(language) {
-    this.setState({ ...this.state, language, similarWords: null, nonSimilarWords: null, word: '' })
+    this.setState({
+      ...this.state,
+      language,
+      similarWords: null,
+      nonSimilarWords: null,
+      word: '',
+      result: null,
+    })
   }
 
   render() {
@@ -224,10 +231,10 @@ class App extends Component {
               )}
               <div className="abuttons">
                 <button className="abutton add-new" onClick={this.addOperator}>
-                  + Add operation
+                  + Add
                 </button>
                 <button className="abutton" onClick={this.sendOperation}>
-                  Send >
+                  Do operation >
                 </button>
               </div>
             </div>
