@@ -6,7 +6,7 @@ export const colors = {
 export const languageStrings = {
   ml: 'മലയാളം',
   ta: 'தமிழ்',
-  be: 'বাঙালি',
+  bl: 'বাঙালি',
 }
 
 export const samples = {
@@ -26,7 +26,7 @@ export const samples = {
     'கன்னட',
     'சீதாராமன்',
   ],
-  be: ['বাঙালি', 'মিষ্টি', 'ছেলে', 'কলকাতা', 'চেন্নাই', 'দিল্লি', 'রবীন্দ্রনাথ'],
+  bl: ['বাঙালি', 'মিষ্টি', 'ছেলে', 'কলকাতা', 'চেন্নাই', 'দিল্লি', 'রবীন্দ্রনাথ'],
 }
 
 export const operationSamples = {

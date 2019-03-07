@@ -15,7 +15,7 @@ class App extends Component {
   constructor(props: Props) {
     super(props)
     const url = new URL(window.location)
-    const supportedLanguages = [ 'ta', 'ml', 'be']
+    const supportedLanguages = [ 'ta', 'ml', 'bl']
     let lang = url.searchParams.get('lang')
     lang = lang && supportedLanguages.includes(lang) ? lang : 'ml'
 
@@ -26,7 +26,7 @@ class App extends Component {
       similarWords: null,
       nonSimilarWords: null,
       samples,
-      operations: operationSamples.ml,
+      operations: operationSamples,
       result: null,
     }
 
@@ -43,14 +43,14 @@ class App extends Component {
     let { operations, language } = this.state
     let positive = []
     let negative = []
-    operations.forEach(o => {
+    operations[language].forEach(o => {
       if (o.word.trim().length > 0) {
         if (o.sign === '+') positive.push(o.word)
         else if (o.sign === '-') negative.push(o.word)
       }
     })
     axios
-      .post(`http://${ip}/compare/`, { positive, negative })
+      .post(`http://${ip}/compare/${language}/`, { positive, negative })
       .then(res => {
         let result = []
         res.data.forEach(r => {
@@ -148,9 +148,9 @@ class App extends Component {
               {languageStrings.ta}
             </div>
             <div
-              className={`language ${language === 'be' ? 'active' : ''}`}
-              onClick={() => this.setLanguage('be')}>
-              {languageStrings.be}
+              className={`language ${language === 'bl' ? 'active' : ''}`}
+              onClick={() => this.setLanguage('bl')}>
+              {languageStrings.bl}
             </div>
           </div>
         </div>
@@ -198,12 +198,12 @@ class App extends Component {
           </div>
         </div>
 
-        {language === 'ml' && (
+        {operations[language] && (
           <div className="block-wrapper">
             <div className="block algebra">
               <h2>Word2Vec algebra</h2>
               <div className="operations">
-                {operations.map((o, i) => (
+                {operations[language].map((o, i) => (
                   <Operator
                     key={i}
                     word={o.word}
