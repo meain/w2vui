@@ -93,7 +93,7 @@ class App extends Component {
 
   switchSign(i) {
     let { operations, language } = this.state
-    operations[language][i].sign = operations[i].sign === '+' ? '-' : '+'
+    operations[language][i].sign = operations[language][i].sign === '+' ? '-' : '+'
     this.setState({ ...this.state, operations })
   }
 
