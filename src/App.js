@@ -9,7 +9,7 @@ import axios from 'axios'
 
 import { languageStrings, samples, operationSamples } from './constants.js'
 
-const ip = '35.184.138.74:5555'
+const ip = '35.232.80.8:5555'
 
 class App extends Component {
   constructor(props: Props) {
